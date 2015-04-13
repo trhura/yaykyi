@@ -1,0 +1,31 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Yaykyi{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='myinsay.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  {{ super()}}
+
+  <!-- footer -->
+  <footer class="footer">
+    <p>&copy; Arplar Tech 2015</p>
+  </footer>
+</div>
+{% endblock %}
+
+{% block navbar %}
+  <div class="header clearfix">
+
+    <nav>
+      <a href="/">
+      <img src="{{ url_for('static', filename='img/yaykyi.png') }}" />
+      </a>
+    </nav>
+
+</div>
+{% endblock %}

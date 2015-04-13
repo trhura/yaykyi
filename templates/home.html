@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+      <div class="jumbotron">
+        <h1></h1>
+        <p class="lead">
+	  <img src="{{ url_for('static', filename='img/yaychintar.png') }}" />
+	</p>
+
+	<form action="#" method="post">
+	<p>
+	  <textarea style="width:100%;"
+		    rows="6"
+		    name="content"
+		    maxlength=500
+		    autofocus
+		    required>
+	  </textarea>
+	</p>
+
+	<p>
+	  <button class="btn btn-default" type="submit">
+	  <img class="btn" src="{{ url_for('static', filename='img/pep.png') }}">
+	  </button>
+	</p>
+      </div>
+{% endblock %}
