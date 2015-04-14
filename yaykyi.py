@@ -83,29 +83,42 @@ class PostImage ():
 
     @classmethod
     def _create_image (cls, imagefile, post):
-        WIDTH = 500
+        WIDTH = 640
         PADDING = 15
-        surface = cairo.ImageSurface(cairo.FORMAT_RGB24, WIDTH, 300)
-        context = cairo.Context(surface)
+
+        source = cairo.ImageSurface(cairo.FORMAT_RGB24, WIDTH, 800)
+        sourcectx = cairo.Context(source)
 
         # background white
-        context.set_source_rgb(*cls.get_background_color())
-        context.paint()
+        sourcectx.set_source_rgb(*cls.get_background_color())
+        sourcectx.paint()
 
-        context.translate(PADDING, PADDING)
-        pangocairo_context = pangocairo.CairoContext(context)
-        pangocairo_context.set_antialias(cairo.ANTIALIAS_SUBPIXEL)
+        sourcectx.translate(PADDING, PADDING)
+        pangoctx = pangocairo.CairoContext(sourcectx)
+        pangoctx.set_antialias(cairo.ANTIALIAS_SUBPIXEL)
 
-        layout = pangocairo_context.create_layout()
+        layout = pangoctx.create_layout()
         font = pango.FontDescription("Pyidaungsu")
+
+        size = 1024 * 14
+        font.set_size(size)
         layout.set_font_description(font)
 
         layout.set_text(post)
         layout.set_width(1024 * (WIDTH-2*PADDING))
         layout.set_wrap(pango.WRAP_WORD)
-        context.set_source_rgb(0.1, 0.1, 0.1)
-        pangocairo_context.update_layout(layout)
-        pangocairo_context.show_layout(layout)
+
+        width, height = layout.get_size()
+        width, height = width/1024, height/1024
+
+        sourcectx.set_source_rgb(0.1, 0.1, 0.1)
+        pangoctx.update_layout(layout)
+        pangoctx.show_layout(layout)
+
+        surface = cairo.ImageSurface(cairo.FORMAT_RGB24, WIDTH, height + 2*PADDING)
+        surfacectx = cairo.Context(surface)
+        surfacectx.set_source_surface(source)
+        surfacectx.paint()
 
         surface.write_to_png(imagefile)
 
