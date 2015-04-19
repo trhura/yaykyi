@@ -106,7 +106,7 @@ class PostImage ():
 
         layout.set_text(post)
         layout.set_width(1024 * (WIDTH-2*PADDING))
-        layout.set_wrap(pango.WRAP_WORD)
+        layout.set_wrap(pango.WRAP_CHAR)
 
         width, height = layout.get_size()
         width, height = width/1024, height/1024
