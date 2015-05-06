@@ -84,7 +84,7 @@ class PostImage ():
     @classmethod
     def _create_image (cls, imagefile, post):
         WIDTH = 500
-        PADDING = 30
+        PADDING = 20
 
         source = cairo.ImageSurface(cairo.FORMAT_RGB24, WIDTH, 800)
         sourcectx = cairo.Context(source)
