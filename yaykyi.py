@@ -50,8 +50,8 @@ class PostImage ():
                 app.logger.warning("Cannot mkdirs" + parent_directory + e)
 
         image_file = os.path.join(parent_directory, postid + '.png')
-        #if not os.path.exists(image_file):
-        self._create_image(image_file, post.content)
+        if not os.path.exists(image_file):
+            self._create_image(image_file, post.content)
 
         self.imagepath = os.path.join('/static/',
                                  str(post.pub_date.date()),
