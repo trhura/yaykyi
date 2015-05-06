@@ -83,7 +83,7 @@ class PostImage ():
 
     @classmethod
     def _create_image (cls, imagefile, post):
-        WIDTH = 500
+        WIDTH = 600
         PADDING = 20
 
         source = cairo.ImageSurface(cairo.FORMAT_RGB24, WIDTH, 800)
@@ -110,7 +110,7 @@ class PostImage ():
 
         width, height = layout.get_size()
         width, height = width/1024, height/1024
-        height = max(height, 100)
+        height = max(height, 150)
 
         sourcectx.set_source_rgb(0.1, 0.1, 0.1)
         pangoctx.update_layout(layout)
