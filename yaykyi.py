@@ -110,7 +110,7 @@ class PostImage ():
 
         width, height = layout.get_size()
         width, height = width/1024, height/1024
-        height = max(height, 200)
+        height = max(height, 100)
 
         sourcectx.set_source_rgb(0.1, 0.1, 0.1)
         pangoctx.update_layout(layout)
